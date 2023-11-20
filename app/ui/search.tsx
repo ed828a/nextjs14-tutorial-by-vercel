@@ -21,12 +21,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
       params.delete('query');
     }
     // params is a query string now. use Next.js's useRouter and usePathname hooks to update the URL
-    // Construct the URL with the query parameters
-
-    // Construct the URL with the query parameters
-    const newPath = `${pathname}?${params.toString()}`;
-
-    router.replace(newPath);
+    router.replace(`${pathname}?${params.toString()}`);
   }
 
   return (
