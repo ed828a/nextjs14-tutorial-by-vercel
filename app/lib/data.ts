@@ -132,6 +132,11 @@ export async function fetchFilteredInvoices(
 export async function fetchInvoicesPages(query: string) {
   noStore();
   try {
+    // the :: is a type cast or type conversion operator in PostgreSQL.
+    // ILIKE is a case-insensitive version of the LIKE operator in SQL. it will match patterns regardless of whether the characters are uppercase or lowercase.
+    // LIKE: The LIKE operator is used in a SQL query to match a specified pattern within a string.
+    // The % symbol is used as a wildcard that matches any sequence of characters,
+    // and _ (underscore) is used to match a single character.
     const count = await sql`SELECT COUNT(*)
     FROM invoices
     JOIN customers ON invoices.customer_id = customers.id
@@ -143,6 +148,7 @@ export async function fetchInvoicesPages(query: string) {
       invoices.status ILIKE ${`%${query}%`}
   `;
 
+    console.log('count', count);
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {

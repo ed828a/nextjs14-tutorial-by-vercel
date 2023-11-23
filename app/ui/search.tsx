@@ -3,7 +3,6 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-// import { RouteImpl } from 'next/navigation';
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
@@ -16,6 +15,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
 
     // set a query string in params
     const params = new URLSearchParams(searchParams); // URLSearchParams  is a Web API that provides utility methods for manipulating the URL query parameters.
+    params.set('page', '1');
     console.log('params', params);
     console.log('params.toString()', params.toString());
     if (term) {
@@ -25,7 +25,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
     }
 
     // params is a query string now. use Next.js's useRouter and usePathname hooks to update the URL with the user's search data
-    console.log(`${pathname}?${params.toString()}`);
+    // console.log(`${pathname}?${params.toString()}`);
     router.replace(`${pathname}?${params.toString()}`);
   }, 300); // 300ms
 
