@@ -10,14 +10,14 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const router = useRouter();
 
   const handleSearch = useDebouncedCallback((term: string) => {
-    console.log('term', term);
-    console.log('searchParams', searchParams);
+    // console.log('term', term);
+    // console.log('searchParams', searchParams);
 
     // set a query string in params
     const params = new URLSearchParams(searchParams); // URLSearchParams  is a Web API that provides utility methods for manipulating the URL query parameters.
     params.set('page', '1');
-    console.log('params', params);
-    console.log('params.toString()', params.toString());
+    // console.log('params', params);
+    // console.log('params.toString()', params.toString());
     if (term) {
       params.set('query', term);
     } else {
